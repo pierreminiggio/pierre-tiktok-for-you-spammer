@@ -38,7 +38,8 @@ export default function spamTikTok(
                         headers: new Headers({
                             Authorization: 'Bearer ' + token,
                             'Content-Type': 'application/json'
-                        })
+                        }),
+                        body: JSON.stringify(tikTok)
                     })
                     console.log(response)
                 } catch (e) {
