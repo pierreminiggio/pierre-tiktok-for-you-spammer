@@ -4,6 +4,8 @@ import spam from '@pierreminiggio/tiktok-for-you-spammer'
 /**
  * @param {string} facebookLogin
  * @param {string} facebookPassword
+ * @param {string} api
+ * @param {string} token
  * @param {number} postScrollLength
  * @param {number} commentScrollLength
  * @param {boolean} show
@@ -16,6 +18,8 @@ import spam from '@pierreminiggio/tiktok-for-you-spammer'
 export default function spamTikTok(
     facebookLogin,
     facebookPassword,
+    api,
+    token,
     postScrollLength = 20000,
     commentScrollLength= 10000,
     proxy = null,
@@ -29,10 +33,10 @@ export default function spamTikTok(
              async (tikTok, {comment}) => {
 
                 try {
-                    await fetch(ids.api + '/save', {
+                    await fetch(api + '/save', {
                         method: 'POST',
                         headers: {
-                            'Authorization': 'Bearer ' + ids.token
+                            Authorization: 'Bearer ' + token
                         }
                     })
                 } catch (e) {

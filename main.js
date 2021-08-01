@@ -6,6 +6,8 @@ fs.readFile('./ids.json', 'utf-8', (err, data) => {
     spamTikTok(
         ids.login,
         ids.password,
+        ids.api,
+        ids.token,
         2000,
         6000,
         ids.proxy,
