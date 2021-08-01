@@ -8,6 +8,6 @@ fs.readFile('./ids.json', 'utf-8', (err, data) => {
         ids.password,
         2000,
         6000,
-        null,
+        ids.proxy,
     ).then(() => console.log('Done !'))
 })

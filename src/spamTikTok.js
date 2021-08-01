@@ -26,13 +26,27 @@ export default function spamTikTok(
             facebookLogin,
             facebookPassword,
              async (tikTok, {comment}) => {
-                await comment('Salut')
+
+                try {
+                    await fetch(ids.api + '/save', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + ids.token
+                        }
+                    })
+                } catch (e) {
+                    console.error('Error while saving : ')
+                    console.error(e)
+                }
+                
+                console.log(tikTok)
+                //await comment('Salut')
             },
             postScrollLength,
             commentScrollLength,
             proxy,
-            show,
-            sendLog
+            show//,
+            //sendLog
         )
         resolve()
     })
