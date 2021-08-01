@@ -36,7 +36,8 @@ export default function spamTikTok(
                     await fetch(api + '/save', {
                         method: 'POST',
                         headers: new Headers({
-                            Authorization: 'Bearer ' + token
+                            Authorization: 'Bearer ' + token,
+                            'Content-Type': 'application/json'
                         })
                     })
                 } catch (e) {
