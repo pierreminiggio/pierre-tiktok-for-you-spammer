@@ -8,7 +8,7 @@ fs.readFile('./ids.json', 'utf-8', (err, data) => {
         ids.password,
         ids.api,
         ids.token,
-        2000,
+        10000,
         6000,
         ids.proxy,
     ).then(() => console.log('Done !'))
