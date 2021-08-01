@@ -33,13 +33,14 @@ export default function spamTikTok(
              async (tikTok, {comment}) => {
 
                 try {
-                    await fetch(api + '/save', {
+                    const response = await fetch(api + '/save', {
                         method: 'POST',
                         headers: new Headers({
                             Authorization: 'Bearer ' + token,
                             'Content-Type': 'application/json'
                         })
                     })
+                    console.log(response)
                 } catch (e) {
                     console.error('Error while saving : ')
                     console.error(e)
