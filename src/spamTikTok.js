@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch, { Headers } from 'node-fetch'
 import spam from '@pierreminiggio/tiktok-for-you-spammer'
 
 /**
@@ -35,9 +35,9 @@ export default function spamTikTok(
                 try {
                     await fetch(api + '/save', {
                         method: 'POST',
-                        headers: {
+                        headers: new Headers({
                             Authorization: 'Bearer ' + token
-                        }
+                        })
                     })
                 } catch (e) {
                     console.error('Error while saving : ')
