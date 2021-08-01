@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'
 import spam from '@pierreminiggio/tiktok-for-you-spammer'
 
 /**
@@ -38,7 +39,7 @@ export default function spamTikTok(
                     console.error('Error while saving : ')
                     console.error(e)
                 }
-                
+
                 console.log(tikTok)
                 //await comment('Salut')
             },

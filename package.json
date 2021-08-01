@@ -16,7 +16,8 @@
   "homepage": "https://github.com/pierreminiggio/pierre-tiktok-for-you-spammer#readme",
   "dependencies": {
     "@pierreminiggio/tiktok-for-you-spammer": "github:pierreminiggio/tiktok-for-you-spammer",
-    "node": "^12.6.0"
+    "node": "^12.6.0",
+    "node-fetch": "^2.6.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
