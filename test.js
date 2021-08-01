@@ -1,4 +1,4 @@
-import spamTikTok from './src/spamTiKTok.js'
+import spamTikTok from './src/spamTikTok.js'
 import fs from 'fs'
 
 fs.readFile('./ids.json', 'utf-8', (err, data) => {
