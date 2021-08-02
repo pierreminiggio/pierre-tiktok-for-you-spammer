@@ -1,0 +1,25 @@
+
+on:
+  workflow_dispatch:
+    inputs:
+name: Spam
+jobs:
+  spam:
+    name: Spam
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: sudo apt update
+      - run: npm i
+      - run: node main.js $LOGIN $PASSWORD $API $TOKEN $PROXY > spam.json
+        env:
+          LOGIN: ${{ secrets.LOGIN }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          API: ${{ secrets.API }}
+          TOKEN: ${{ secrets.TOKEN }}
+          PROXY: ${{ secrets.PROXY }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: spam.json
+          path: spam.json
