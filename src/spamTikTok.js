@@ -75,13 +75,15 @@ export default function spamTikTok(
                     return
                 }
 
-                const commentContent = await commentResponse.text()
+                let commentContent = await commentResponse.text()
 
                 if (! commentContent) {
                     console.error('Empty comment')
 
                     return
                 }
+
+                commentContent = commentContent.replace('[author]', tikTok.author)
 
                 await comment(commentContent)
 
