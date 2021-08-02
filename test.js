@@ -15,6 +15,6 @@ fs.readFile(paths.join('/') + '/ids.json', 'utf-8', (err, data) => {
         1000,
         null,
         true,
-        (toLog) => {console.log(toLog)},
+        (toLog) => {console.log(toLog)}
     ).then(() => console.log('Done !'))
 })
