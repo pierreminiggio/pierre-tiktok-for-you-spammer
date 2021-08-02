@@ -33,7 +33,7 @@ export default function spamTikTok(
              async (tikTok, {comment}) => {
 
                 try {
-                    const response = await fetch(api + '/save', {
+                    await fetch(api + '/save', {
                         method: 'POST',
                         headers: new Headers({
                             Authorization: 'Bearer ' + token,
@@ -41,20 +41,76 @@ export default function spamTikTok(
                         }),
                         body: JSON.stringify(tikTok)
                     })
-                    console.log(response)
                 } catch (e) {
                     console.error('Error while saving : ')
                     console.error(e)
+
+                    return
                 }
 
-                console.log(tikTok)
-                //await comment('Salut')
+                const tikTokLink = tikTok.link
+
+                let commentResponse
+                try {
+                    commentResponse = await fetch(api + '/generate-random-comment', {
+                        method: 'POST',
+                        headers: new Headers({
+                            Authorization: 'Bearer ' + token,
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            link: tikTokLink
+                        })
+                    })
+                } catch (e) {
+                    console.error('Error while generating comment : ')
+                    console.error(e)
+
+                    return
+                }
+
+                if (! commentResponse) {
+                    console.error('Empty comment response')
+
+                    return
+                }
+
+                const commentContent = await commentResponse.text()
+
+                if (! commentContent) {
+                    console.error('Empty comment')
+
+                    return
+                }
+
+                await comment(commentContent)
+
+                try {
+                    await fetch(api + '/save-comment', {
+                        method: 'POST',
+                        headers: new Headers({
+                            Authorization: 'Bearer ' + token,
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            link: tikTokLink,
+                            comment: commentContent
+                        })
+                    })
+                } catch (e) {
+                    console.error('Error while generating comment : ')
+                    console.error(e)
+
+                    return
+                }
+
+                console.log('Done for ' + tikTokLink + ' !')
             },
             postScrollLength,
             commentScrollLength,
             proxy,
-            show//,
-            //sendLog
+            show,
+            sendLog
         )
         resolve()
     })
