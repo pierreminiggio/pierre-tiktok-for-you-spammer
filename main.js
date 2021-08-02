@@ -11,7 +11,7 @@ fs.readFile(paths.join('/') + '/ids.json', 'utf-8', (err, data) => {
         ids.password,
         ids.api,
         ids.token,
-        20000,
+        30000,
         6000,
         ids.proxy
     ).then(() => console.log('Done !'))
