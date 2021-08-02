@@ -1,7 +1,10 @@
 import spamTikTok from './src/spamTikTok.js'
 import fs from 'fs'
 
-fs.readFile('./ids.json', 'utf-8', (err, data) => {
+const paths = process.argv[1].split('/')
+paths.pop()
+
+fs.readFile(paths.join('/') + '/ids.json', 'utf-8', (err, data) => {
     const ids = JSON.parse(data)
         ids.login,
         ids.password,
