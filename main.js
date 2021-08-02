@@ -1,18 +1,18 @@
 import spamTikTok from './src/spamTikTok.js'
-import fs from 'fs'
 
-const paths = process.argv[1].split('/')
-paths.pop()
+const args = process.argv
 
-fs.readFile(paths.join('/') + '/ids.json', 'utf-8', (err, data) => {
-    const ids = JSON.parse(data)
-    spamTikTok(
-        ids.login,
-        ids.password,
-        ids.api,
-        ids.token,
-        30000,
-        6000,
-        ids.proxy
-    ).then(() => console.log('Done !'))
-})
+if (args.length !== 6 && args.length !== 7) {
+    console.log('Use like this : node main.js <login> <password> <api> <token> [proxy]')
+    process.exit()
+}
+
+spamTikTok(
+    args[2],
+    args[3],
+    args[4],
+    args[5],
+    30000,
+    6000,
+    args.length === 7 ? args[6] : null
+).then(() => console.log('Done !'))
